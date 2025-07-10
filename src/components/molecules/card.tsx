@@ -1,13 +1,32 @@
 import React from 'react'
 import Link from 'next/link'
+import { MediumTitle, SmallTitle, SubText } from '@/components/atoms/titles'
+import Button from '@/components/atoms/button'
 
 const Card = ({ title, image, link } : { title: string, image: string, link: string }) => {
     return (
-        <Link href={link} key={title} className='bg-[#EF4343] overflow-hidden w-96 flex flex-col rounded-2xl'>
+        <Link href={link} key={title} className='bg-[#EF4343] aspect-auto overflow-hidden w-96 flex flex-col rounded-2xl hover:scale-105 transition-transform duration-200 ease-in-out'>
             <img src={image} alt={title} className='w-full object-fill' loading="lazy"/>
-            <div className='py-4 text-black text-xl font-semibold text-center tracking-wide'>{title}</div>
+            <MediumTitle text={title} props='py-4 text-black'/>
         </Link>
     )
 }
 
-export default Card
+const CardItem = ({ title, image, description } : { title: string, image: string, description: string }) => {
+    return (
+        <div className='flex gap-8 items-center w-[900px]'>
+            <img src={image} alt={title} className='w-64 h-44 rounded-2xl object-cover bg-black' loading="lazy"/>
+            <div className='flex-1 flex flex-col'>
+                <div className='bg-gray-200 rounded-2xl pl-4 pr-10 py-2 mb-2 flex flex-col'>
+                    <SmallTitle text={title} props='text-black'/>
+                    <SubText text={description} props='mb-2'/>
+                </div>
+                <div className='flex flex-col justify-center items-end h-full'>
+                    <Button text='Pedir'/>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export { Card, CardItem }

@@ -1,10 +1,8 @@
 import React from 'react'
 
-const Button = () => {
+const Button = ({ text, props } : { text: string, props?: string}) => {
   return (
-    <button className="bg-blue-500 hover:bg-blue-700 cursor-pointer text-white font-bold py-2 px-4 rounded">
-      Click Me
-    </button>
+    <button className={`bg-[#EF4343] w-fit cursor-pointer text-white text-center font-medium py-2 px-4 rounded-full ${props}`}>{text}</button>
   )
 }
 

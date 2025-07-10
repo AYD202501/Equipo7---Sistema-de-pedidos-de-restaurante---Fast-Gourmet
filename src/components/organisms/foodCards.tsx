@@ -1,12 +1,11 @@
 import React from 'react'
-import Card from '@/components/molecules/card'
-import { link } from 'fs';
+import { Card } from '@/components/molecules/card'
 
 const categories = [
     {
         title: 'HAMBURGUESAS',
         image: 'burger.webp',
-        link: '/burger',
+        link: '/burgers',
     },
     {
         title: 'SANDWICHS',
