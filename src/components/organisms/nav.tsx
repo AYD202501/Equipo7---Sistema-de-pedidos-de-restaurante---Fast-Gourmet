@@ -1,24 +1,34 @@
 import React, { useState } from 'react'
-import NavTitle from '@/components/molecules/navTitle'
+import { NavTitle, MenuTitle } from '@/components/molecules/navTitle'
 import Sidebar from '@/components/organisms/sidebar'
 
 const Nav = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   return (
-    <>
+    <div className='hidden sm:block'>
       <nav className="flex items-center justify-between h-16 text-white px-8">
-        <div onClick={() => setSidebarOpen(!sidebarOpen)} className="cursor-pointer">
-          <NavTitle title='MENÚ' image='bars.webp' alt='Menú'/>
+        <div onClick={() => setSidebarOpen(!sidebarOpen)} className="menu cursor-pointer">
+          <MenuTitle title='Menú' image='bars.webp' alt='Menú'/>
         </div>
         <div className="flex gap-4">
-          <NavTitle title='CARRO' image='cart.webp' alt='Carro de compras'/>
-          <NavTitle title='INICIAR SESIÓN' image='user.webp' alt='Iniciar sesión'/>
+          <NavTitle title='Carrito' image='cart.webp' alt='Carro de compras' link='/cart'/>
+          <NavTitle title='Iniciar Sesión' image='user.webp' alt='Iniciar sesión' link='/login'/>
         </div>
       </nav>
-      <Sidebar isVisible={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-    </>
+      <div className='absolute px-8'>
+        <Sidebar isVisible={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      </div>
+    </div>
   )
 }
 
-export default Nav
+const NavMobile = () => {
+  return (
+    <div className='flex sm:hidden'>
+
+    </div>
+  )
+}
+
+export { Nav, NavMobile }
