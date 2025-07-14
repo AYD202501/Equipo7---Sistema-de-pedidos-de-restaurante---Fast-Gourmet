@@ -4,9 +4,12 @@ import Sidebar from '@/components/organisms/sidebar'
 import { signIn } from 'next-auth/react'
 
 const logIn = () => {
-  signIn ('auth0', {
-    callbackUrl: `${window.location.origin}/`
-  });
+  try {
+    signIn ('auth0');
+  }
+  catch (error) {
+    console.log(error)
+  }
 };
 
 const Nav = () => {
@@ -20,7 +23,7 @@ const Nav = () => {
         </div>
         <div className="flex gap-4">
           <NavTitle title='Carrito' image='cart.webp' alt='Carro de compras' link='/cart'/>
-          <NavTitle title='Iniciar Sesión' image='user.webp' alt='Iniciar sesión' link='/login' onClick={logIn}/>
+          <NavTitle title='Iniciar Sesión' image='user.webp' alt='Iniciar sesión' onClick={logIn}/>
         </div>
       </nav>
       <div className='absolute px-8'>
