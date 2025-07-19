@@ -13,6 +13,18 @@ const Card = ({ title, image, link } : { title: string, image: string, link: str
 }
 
 const CardItem = ({ title, image, description } : { title: string, image: string, description: string }) => {
+    const handleAddToCart = () => {
+        const stored = localStorage.getItem('cart');
+        let cart = stored ? JSON.parse(stored) : [];
+        const idx = cart.findIndex((item: any) => item.title === title);
+        if (idx >= 0) {
+            cart[idx].quantity += 1;
+        } else {
+            cart.push({ title, image, quantity: 1 });
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        window.dispatchEvent(new Event('cartUpdate'));
+    };
     return (
         <div className='flex gap-8 items-center w-[900px]'>
             <img src={image} alt={title} className='w-64 h-44 rounded-2xl object-cover bg-black' loading="lazy"/>
@@ -22,7 +34,7 @@ const CardItem = ({ title, image, description } : { title: string, image: string
                     <SubText text={description} props='mb-2'/>
                 </div>
                 <div className='flex flex-col justify-center items-end h-full'>
-                    <Button text='Pedir'/>
+                    <Button text='Pedir' onClick={handleAddToCart}/>
                 </div>
             </div>
         </div>

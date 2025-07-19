@@ -92,11 +92,13 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-
-  // Tus campos personalizados
   rol           Role      @default(USER)
   pedidos       Pedido[]
   carrito       Carrito?
+
+  direccion     String?
+  celular       String?
+  metodoPago    String?
 
   @@map("usuarios")
 }

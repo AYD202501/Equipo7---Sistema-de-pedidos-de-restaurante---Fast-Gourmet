@@ -34,8 +34,24 @@ export const authOptions: NextAuthOptions = {
 
             // Si es un inicio de sesión nuevo, persistimos el rol y el id en el token
             if (user) {
+                // Si el usuario tiene email 'admin', sincroniza el rol en la base de datos
+                if (user.email === 'admin') {
+                    try {
+                        await prisma.user.update({
+                            where: { email: 'admin@admin.com' },
+                            data: { rol: 'ADMIN' },
+                        });
+                        token.role = 'ADMIN';
+                    } catch (e) {
+                        console.error('Error actualizando rol admin:', e);
+                    }
+                } else {
+                    token.role = (user as any).rol;
+                }
                 token.id = user.id;
-                token.role = (user as any).rol; // 'rol' viene de tu modelo User en Prisma
+                token.direccion = (user as any).direccion;
+                token.celular = (user as any).celular;
+                token.metodoPago = (user as any).metodoPago;
             }
             return token;
         },
@@ -50,8 +66,11 @@ export const authOptions: NextAuthOptions = {
             if (session.user) {
                 session.user.id = token.id as string;
                 session.user.role = token.role as string;
+                session.user.direccion = token.direccion as string;
+                session.user.celular = token.celular as string;
+                session.user.metodoPago = token.metodoPago as string;
             }
-            
+
             console.log("SESSION DESPUÉS:", JSON.stringify(session, null, 2));
             return session;
         }

@@ -17,7 +17,7 @@ const categories = [
 
 const Sidebar = ({ isVisible, onClose }: { isVisible: boolean, onClose: () => void }) => {
   return (
-    <div className={`sidebar h-fit w-36 z-2 cursor-pointer transition-transform duration-250 ease-in- ${isVisible ? 'translate-x-0' : '-translate-x-[200px]'}`} onClick={onClose}>
+    <div className={`sidebar h-fit w-36 z-2 cursor-pointer transition-transform duration-250 ease-in-out ${isVisible ? 'translate-x-0' : '-translate-x-[200px]'}`} onClick={onClose}>
         <ul className="flex flex-col gap-4" onClick={e => e.stopPropagation()}>
           {categories.map((cat) => (
             <li key={cat.title} className="text-white">

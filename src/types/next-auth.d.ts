@@ -11,6 +11,9 @@ declare module "next-auth" {
     user?: {
       id: string;
       role: string; // Aquí definimos el tipo para 'role'
+      direccion: string;
+      celular: string;
+      metodoPago: string;
     } & DefaultSession["user"]; // Mantenemos las propiedades originales (name, email, image)
   }
 }
