@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Image from 'next/image'
 import Layout from '@/components/layouts/layout'
 
 interface CartItem {
@@ -43,7 +44,7 @@ const Cart = () => {
           <div className='flex flex-col gap-4'>
             {cart.map(item => (
               <div key={item.title} className='flex items-center bg-gray-800 rounded-lg p-4 gap-4'>
-                <img src={item.image} alt={item.title} className='w-20 h-20 object-cover rounded'/>
+                <Image src={item.image} alt={item.title} className='w-20 h-20 object-cover rounded' width={80} height={80} />
                 <div className='flex-1'>
                   <div className='font-semibold text-lg'>{item.title}</div>
                 </div>

@@ -1,6 +1,5 @@
 import React from 'react'
 import Layout from '@/components/layouts/layout'
-import { CardItem } from '@/components/molecules/card'
 import MenuItems from '@/components/organisms/menuItems'
 
 const burgers = [

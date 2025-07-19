@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import Layout from "@/components/layouts/layout";
 
@@ -16,7 +17,7 @@ const roleOptions = ["ADMIN", "USER"];
 
 const UsersPage = () => {
   const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
   const [editingRole, setEditingRole] = useState<{ [id: string]: string }>({});
   const [showAddModal, setShowAddModal] = useState(false);
   const [newUser, setNewUser] = useState({
@@ -264,10 +265,12 @@ const UsersPage = () => {
                         </td>
                         <td className="px-4 py-4 text-sm font-medium text-white whitespace-nowrap">
                           {user.image ? (
-                            <img
+                            <Image
                               className="object-cover w-10 h-10 rounded-full"
                               src={user.image}
                               alt={user.name}
+                              width={40}
+                              height={40}
                             />
                           ) : (
                             <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-600">

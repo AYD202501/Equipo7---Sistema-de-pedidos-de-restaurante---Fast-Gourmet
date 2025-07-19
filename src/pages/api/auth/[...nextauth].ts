@@ -1,5 +1,4 @@
 import NextAuth, { NextAuthOptions } from "next-auth"
-import { AdapterUser } from "next-auth/adapters"
 import Auth0Provider from "next-auth/providers/auth0"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import prisma from '@/config/prisma'

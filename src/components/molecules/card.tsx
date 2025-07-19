@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { MediumTitle, SmallTitle, SubText } from '@/components/atoms/titles'
 import Button from '@/components/atoms/button'
@@ -6,7 +7,7 @@ import Button from '@/components/atoms/button'
 const Card = ({ title, image, link } : { title: string, image: string, link: string }) => {
     return (
         <Link href={link} key={title} className='bg-[#EF4343] aspect-auto overflow-hidden w-96 flex flex-col rounded-2xl hover:scale-105 transition-transform duration-200 ease-in-out'>
-            <img src={image} alt={title} className='w-full object-fill' loading="lazy"/>
+            <Image src={image} alt={title} className='w-full object-fill' width={384} height={216} />
             <MediumTitle text={title} props='py-4 text-black'/>
         </Link>
     )
@@ -15,7 +16,7 @@ const Card = ({ title, image, link } : { title: string, image: string, link: str
 const CardItem = ({ title, image, description } : { title: string, image: string, description: string }) => {
     const handleAddToCart = () => {
         const stored = localStorage.getItem('cart');
-        let cart = stored ? JSON.parse(stored) : [];
+        const cart = stored ? JSON.parse(stored) : [];
         const idx = cart.findIndex((item: any) => item.title === title);
         if (idx >= 0) {
             cart[idx].quantity += 1;
@@ -27,7 +28,7 @@ const CardItem = ({ title, image, description } : { title: string, image: string
     };
     return (
         <div className='flex gap-8 items-center w-[900px]'>
-            <img src={image} alt={title} className='w-64 h-44 rounded-2xl object-cover bg-black' loading="lazy"/>
+            <Image src={image} alt={title} className='w-64 h-44 rounded-2xl object-cover bg-black' width={256} height={176} />
             <div className='flex-1 flex flex-col'>
                 <div className='bg-gray-200 rounded-2xl pl-4 pr-10 py-2 mb-2 flex flex-col'>
                     <SmallTitle text={title} props='text-black'/>
