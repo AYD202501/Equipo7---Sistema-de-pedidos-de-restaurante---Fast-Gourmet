@@ -8,6 +8,9 @@ Juan Parra
 
 Oswald Gutierrez
 
+## Aplicación web
+https://fast-gourmet.vercel.app/
+
 ## Usuarios de prueba:
 | Rol           | correo              | contraseña  |
 | ------------- | ------------------- | ----------- |
